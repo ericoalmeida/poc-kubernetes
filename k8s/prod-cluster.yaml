@@ -1,0 +1,9 @@
+# Example of create a cluster k8s with config YAML file
+kind: Cluster # Type of k8s object
+apiVersion: kind.x-k8s.io/v1alpha4 # Kind API Version
+
+nodes: # List of machines
+- role: control-plane # Master machine | cluster management
+- role: worker # Machine | will contain applications containers (pods)
+- role: worker
+- role: worker
