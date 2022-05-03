@@ -1,0 +1,19 @@
+# Used to create a pod in the node
+kind: Pod # Kind of k8s object
+apiVersion: v1 # API Version
+
+metadata: # Info from k8s object (Pod)
+  name: "goserver" # Name from k8s object (Pod)
+  labels:
+    app: "goserver" # Name from label of k8s object (Pod)
+
+spec: # Specification
+  containers: # Container info
+    - name: goserver # Container name
+      image: "ericoalmeida/hello-go:latest" # Image to be used
+      resources: # Resources limits
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports: 
+        - containerPort: 8000
