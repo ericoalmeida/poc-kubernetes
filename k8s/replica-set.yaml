@@ -1,0 +1,28 @@
+# Used to create a pods with the ReplicaSet object
+kind: ReplicaSet # Create k8s object from ReplicaSet kind
+apiVersion: apps/v1
+
+# Object info (ReplicaSet)
+metadata:
+  name: goserver
+  labels:
+    app: goserver
+
+# Specification of object
+spec:
+  selector: # Used to find pods that will be managed by this object
+    matchLabels:
+      app: goserver
+  replicas: 2
+  template: # templat of application that will be managed by ReplicaSet
+    metadata:
+      name: goserver
+      labels:
+        app: goserver
+    spec:
+      containers:
+        - name: goserver
+          image: ericoalmeida/hello-go:latest
+
+# ReplicaSet do not update image(app version) versions of the pods, 
+# only way to do that is deleting all of them.
