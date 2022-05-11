@@ -1,0 +1,17 @@
+# Used to create a service k8s object
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: goserver-service-node-port
+
+spec:
+  selector:
+    app: goserver # All pods that containing this selector
+  type: NodePort # This type (NodePort) opens port in all nodes
+  ports:
+    - name: goserver-service-node-port
+      port: 9000 # Port of the service
+      targetPort: 8000 # Port of the container
+      nodePort: 30001 # Must be between 30000 - 32767 
+      protocol: TCP
