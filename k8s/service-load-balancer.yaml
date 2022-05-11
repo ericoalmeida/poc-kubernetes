@@ -1,0 +1,16 @@
+# Used to create a service k8s object
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: goserver-service-load-balancer
+
+spec:
+  selector:
+    app: goserver # All pods that containing this selector
+  type: LoadBalancer # This type (LoadBalancer) generates an external IP and NodePort
+  ports:
+    - name: goserver-service-load-balancer
+      port: 9000 # Port of the service
+      targetPort: 8000 # Port of the container
+      protocol: TCP
