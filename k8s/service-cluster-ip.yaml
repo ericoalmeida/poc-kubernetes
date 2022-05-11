@@ -1,0 +1,16 @@
+# Used to create a service k8s object
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: goserver-service-cluster-ip
+
+spec:
+  selector:
+    app: goserver # All pods that containing this selector
+  type: ClusterIP # This type (ClusterIP) works like a load balancer
+  ports:
+    - name: goserver-service-cluster-ip
+      port: 9000 # Port of the service
+      targetPort: 8000 # Port of the container
+      protocol: TCP
