@@ -5,4 +5,7 @@ metadata:
   name: goserver-envs
 
 data:
- USER_NAME: "Erico Almeida"
+ CONFIG: |
+  USER_NAME: "Almeida"
+  USER_EMAIL: "ericoalmeida.egr@gmail.com"
+ 
