@@ -22,7 +22,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoadConfig(w http.ResponseWriter, r *http.Request) {
-	data, err := ioutil.ReadFile("/go/test/.env")
+	data, err := ioutil.ReadFile("/envs/.env")
 
 	if err != nil {
 		log.Fatal("Error loading file", err)
