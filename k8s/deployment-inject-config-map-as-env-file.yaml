@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: goserver
+  labels:
+    app: goserver
+
+spec:
+  selector:
+    matchLabels:
+      app: goserver
+  replicas: 1
+  template:
+    metadata:
+      name: goserver
+      labels:
+        app: goserver
+    spec:
+      containers:
+        - name: goserver
+          image: ericoalmeida/hello-go:2.6
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: config-envs
+              mountPath: "/envs"
+              readOnly: true
+      volumes:
+        - name: config-envs
+          configMap:
+            name: goserver-envs
+            items:
+              - key: CONFIG
+                path: ".env"
+
+# Deployment creates ReplicaSet that creates pods.
+# In this case, the deployment load all configMap environments.
